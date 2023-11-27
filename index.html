@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
+  <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 100vh;
+    }
+
+    .first nav {
+      padding-left: 30px;
+      padding-right: 30px;
+      position: relative;
+    }
+
+    .second nav {
+      padding-left: 30px;
+      padding-right: 30px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .second nav a {
+      padding-left: 45px;
+    }
+
+    .first nav a {
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    .first nav .user,
+    .second nav .user {
+      float: right;
+      padding: 4px;
+    }
+
+    .first nav .shop {
+      position: absolute;
+      left: 50%;
+      padding: 4px;
+    }
+
+    .first nav .txt {
+      padding: 5px;
+    }
+
+    .carousel {
+      position: relative;
+    }
+
+    .left-btn,
+    .right-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .left-btn {
+      left: 10px;
+    }
+
+    .right-btn {
+      right: 10px;
+    }
+
+    .btn {
+      padding: 10px;
+      background-color: rgb(148, 148, 148);
+    }
+
+    .carousel img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .container {
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      flex-wrap: wrap;
+    }
+
+    .container .p1 {
+      width: calc(25% - 20px);
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .container .p1 img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .container .p1 h6 {
+      font-size: 12px;
+      padding-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .container .p1 {
+        width: calc(50% - 20px);
+        margin-bottom: 20px;
+      }
+    }
+
+    @media (max-width: 470px) {
+      .container .p1 {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- first step: navbar -->
+  <nav>
+    <a class="txt" href="#shop"> Shop</a>
+    <a class="txt" href="#about"> About</a>
+    <a class="shop" href=""> <i class="fa-solid fa-bag-shopping"></i></a>
+    <a class="user" href=""> <i class="fa-regular fa-user"></i></a>
+    <a class="user" href=""><i class="fa-solid fa-cart-shopping"></i></a>
+  </nav>
+
+  <div class="carousel">
+    <div class="left-btn btn" onclick="moveLeft()"><i class="fa-solid fa-circle-chevron-left"></i></div>
+    <img src="image01.png" alt="">
+    <div class="right-btn btn" onclick="moveRight()"><i class="fa-solid fa-circle-chevron-right"></i></div>
+  </div>
+
+  <section class="second">
+    <nav>
+      <a href="#store"> STORE</a>
+      <a class="user" href=""> <i class="fa-solid fa-magnifying-glass"></i></a>
+      <a class="user" href=""><i class="fa-solid fa-filter"></i></a>
+    </nav>
+
+    <div class="container">
+      <div class="p1">
+        <img src="product04.jpeg" alt="" style="height: 147px; width: 183.2px">
+        <h6> Product Name <i class="fa-regular fa-heart"></i></h6>
+        <p> 9.99$</p>
+      </div>
+      <div class="p1">
+        <img src="products3.png" alt="" style="height: 147px; width: 183.2px">
+        <h6> Product Name <i class="fa-regular fa-heart"></i></h6>
+        <p> 9.99$</p>
+      </div>
+      <div class="p1">
+        <img src="product07.jpeg" alt="" style="height: 147px ;width: 183.2px">
+        <h6> Product Name <i class="fa-regular fa-heart"></i></h6>
+        <p> 9.99$</p>
+      </div>
+      <div class="p1">
+        <img src="product08.jpeg" alt="" style="height: 147px; width: 183.2px">
+        <h6> Product Name <i class="fa-regular fa-heart"></i></h6>
+        <p> 9.99$</p>
+      </div>
+      <div class="p1">
+        <img src="product01.jpeg" alt="" style="height: 147px; width: 183.2px">
+        <h6> Product Name <i class="fa-regular fa-heart"></i></h6>
+        <p> 9.99$</p>
+      </div>
+      <div class="p1">
+        <img src="product07.jpeg" alt="" style="height: 147px ;width: 183.2px">
+        <h6> Product Name <i class="fa-regular fa-heart"></i></h6>
+        <p> 9.99$</p>
+      </div>
+      <div class="p1">
+        <img src="product05.jpeg" alt="" style="height: 147px ;width: 183.2px">
+        <h6> Product Name <i class="fa-regular fa-heart"></i></h6>
+        <p> 9.99$</p>
+      </div>
+      <div class="p1">
+        <img src="product03.jpeg" alt="" style="height: 147px ;width: 183.2px">
+        <h6> Product Name <i class="fa-regular fa-heart"></i></h6>
+        <p> 9.99$</p>
+      </div>
+    </div>
+  </section>
+  <br><br>
+
+  <section class="third">
+    <div class="parg">
+      <h1> ABOUT</h1>
+      <p>
+        <h4>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta dolorum repudiandae adipisci sunt! Et maiores nisi
+          vel soluta magni quaerat tenetur vitae incidunt fugit asperiores, architecto deserunt ipsa dolore dolor?
+        </h4>
+      </p>
+    </div>
+  </section>
+  <br>
+
+  <section class="fourth">
+    <hr>
+    <div class="parg">
+      <h1> ABOUT</h1>
+      <p>
+        <h4>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta dolorum repudiandae adipisci sunt! Et maiores nisi
+          vel soluta magni quaerat tenetur vitae incidunt fugit asperiores, architecto deserunt ipsa dolore dolor?
+        </h4>
+      </p>
+    </div>
+  </section>
+
+  <script>
+    let imageSources = [
+      'image01.png',
+      'image02.webp',
+      'image03.jpg',
+      'prodct04.jpeg',
+    ];
+    let imgIndex = 2;
+    UpdateUI();
+
+    function moveRight() {
+      imgIndex = (imgIndex + 1) % imageSources.length;
+      UpdateUI();
+    }
+
+    function moveLeft() {
+      imgIndex = (imgIndex - 1 + imageSources.length) % imageSources.length;
+      UpdateUI();
+    }
+
+    function UpdateUI() {
+      document.querySelector('.carousel img').src = imageSources[imgIndex];
+    }
+
+    let leftBtn = document.querySelector('.left-btn');
+    leftBtn.addEventListener('click', moveLeft);
+
+    let rightBtn = document.querySelector('.right-btn');
+    rightBtn.addEventListener('click', moveRight);
+  </script>
+
+</body>
+
+</html>
