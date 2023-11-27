@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,12 +43,12 @@
     }
 
     .first nav .user,
-    .second nav .user {
-      float: right;
+    .second nav .user{
+     float: right;
       padding: 4px;
     }
 
-    .first nav .shop {
+    .first nav .shop{
       position: absolute;
       left: 50%;
       padding: 4px;
@@ -161,42 +162,42 @@
     <div class="container">
       <div class="p1">
         <img src="product04.jpeg" alt="" style="height: 147px; width: 183.2px">
-        <h6> Product Name <i class="fa-regular fa-heart"></i></h6>
+        <h6> Product Name <i class="fa-regular fa-heart"onclick="toggleHeart(this)"></i></h6>
         <p> 9.99$</p>
       </div>
       <div class="p1">
         <img src="products3.png" alt="" style="height: 147px; width: 183.2px">
-        <h6> Product Name <i class="fa-regular fa-heart"></i></h6>
+        <h6> Product Name <i class="fa-regular fa-heart"onclick="toggleHeart(this)"></i></h6>
         <p> 9.99$</p>
       </div>
       <div class="p1">
         <img src="product07.jpeg" alt="" style="height: 147px ;width: 183.2px">
-        <h6> Product Name <i class="fa-regular fa-heart"></i></h6>
+        <h6> Product Name <i class="fa-regular fa-heart"onclick="toggleHeart(this)"></i></h6>
         <p> 9.99$</p>
       </div>
       <div class="p1">
         <img src="product08.jpeg" alt="" style="height: 147px; width: 183.2px">
-        <h6> Product Name <i class="fa-regular fa-heart"></i></h6>
+        <h6> Product Name <i class="fa-regular fa-heart"onclick="toggleHeart(this)"></i></h6>
         <p> 9.99$</p>
       </div>
       <div class="p1">
         <img src="product01.jpeg" alt="" style="height: 147px; width: 183.2px">
-        <h6> Product Name <i class="fa-regular fa-heart"></i></h6>
+        <h6> Product Name <i class="fa-regular fa-heart"onclick="toggleHeart(this)"></i></h6>
         <p> 9.99$</p>
       </div>
       <div class="p1">
         <img src="product07.jpeg" alt="" style="height: 147px ;width: 183.2px">
-        <h6> Product Name <i class="fa-regular fa-heart"></i></h6>
+        <h6> Product Name <i class="fa-regular fa-heart"onclick="toggleHeart(this)"></i></h6>
         <p> 9.99$</p>
       </div>
       <div class="p1">
         <img src="product05.jpeg" alt="" style="height: 147px ;width: 183.2px">
-        <h6> Product Name <i class="fa-regular fa-heart"></i></h6>
+        <h6> Product Name <i class="fa-regular fa-heart"onclick="toggleHeart(this)"></i></h6>
         <p> 9.99$</p>
       </div>
       <div class="p1">
         <img src="product03.jpeg" alt="" style="height: 147px ;width: 183.2px">
-        <h6> Product Name <i class="fa-regular fa-heart"></i></h6>
+        <h6> Product Name <i class="fa-regular fa-heart"onclick="toggleHeart(this)"></i></h6>
         <p> 9.99$</p>
       </div>
     </div>
@@ -205,7 +206,7 @@
 
   <section class="third">
     <div class="parg">
-      <h1> ABOUT</h1>
+     <h1> ABOUT</h1>
       <p>
         <h4>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta dolorum repudiandae adipisci sunt! Et maiores nisi
@@ -258,8 +259,21 @@
 
     let rightBtn = document.querySelector('.right-btn');
     rightBtn.addEventListener('click', moveRight);
-  </script>
+  
+  function toggleHeart(heartIcon) {
+    heartIcon.classList.toggle('red-heart');
+  }
+</script>
 
+<style>
+  /* Add this style to your existing <style> block */
+  .fa-regular.fa-heart.red-heart {
+    color: red;
+  }
+  .fa-regular.fa-heart {
+    cursor: pointer;
+  }
+
+</style>
 </body>
-
-</html>
+</html> 
