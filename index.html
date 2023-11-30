@@ -1,210 +1,231 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
-  <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,400&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <title>Generated Cards</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    .cards-grid {
+      min-height: 70vh;
+    }
+   
+    input {
+      @apply border border-blue-500;
     }
 
-    body {
-      height: 100vh;
+    .filter-icon {
+      @apply mr-1;
     }
 
-    .first nav {
-      padding-left: 30px;
-      padding-right: 30px;
-      position: relative;
+    .sort-options {
+      @apply hidden;
     }
 
-    .second nav {
-      padding-left: 30px;
-      padding-right: 30px;
-      padding-top: 10px;
-      padding-bottom: 10px;
+    .sort-asc,
+    .sort-desc {
+      @apply cursor-pointer;
     }
 
-    .second nav a {
-      padding-left: 45px;
-    }
 
-    .first nav a {
-      text-decoration: none;
-      font-size: 13px;
-    }
 
-    .first nav .user,
-    .second nav .user{
-     float: right;
-      padding: 4px;
-    }
-
-    .first nav .shop{
-      position: absolute;
-      left: 50%;
-      padding: 4px;
-    }
-
-    .first nav .txt {
-      padding: 5px;
-    }
-
-    .carousel {
-      position: relative;
-    }
-
-    .left-btn,
-    .right-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 24px;
-      color: white;
-      cursor: pointer;
+    .btn {
+      @apply absolute top-1/2 transform -translate-y-1/2 text-2xl;
+      color: #333;
+      background: none;
+      border: none;
+      outline: none;
     }
 
     .left-btn {
-      left: 10px;
+      @apply left-0;
     }
 
     .right-btn {
-      right: 10px;
+      @apply right-0;
     }
 
-    .btn {
-      padding: 10px;
-      background-color: rgb(148, 148, 148);
-    }
+    .heart-icon {
+      @apply text-red-500 cursor-pointer;
+      transition: color 0.3s;
 
-    .carousel img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-    }
+      &:hover {
+        @apply text-red-700;
+      }
 
-    .container {
-      width: 100%;
-      padding: 20px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      overflow-x: auto;
-      overflow-y: hidden;
-      flex-wrap: wrap;
-    }
-
-    .container .p1 {
-      width: calc(25% - 20px);
-      height: 200px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .container .p1 img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-    }
-
-    .container .p1 h6 {
-      font-size: 12px;
-      padding-top: 10px;
-    }
-
-    @media (max-width: 768px) {
-      .container .p1 {
-        width: calc(50% - 20px);
-        margin-bottom: 20px;
+      &.clicked {
+        @apply text-red-700;
       }
     }
 
-    @media (max-width: 470px) {
-      .container .p1 {
-        width: 100%;
+    .card {
+      @apply w-52 border shadow-md transition-transform duration-300 transform hover:scale-105;
+
+      .img-wrapper {
+        @apply border h-52 w-52 overflow-hidden;
+
+        img {
+          @apply h-full w-full object-cover;
+        }
       }
+
+      .card-details {
+        @apply p-2;
+
+        .product-name {
+          @apply text-sm font-semibold;
+        }
+
+        .price {
+          @apply text-gray-700;
+        }
+      }
+
+      &:hover {
+        @apply border-gray-500;
+      }
+    
     }
   </style>
 </head>
-
 <body>
+  <section class="relative">
+    <div class="carousel relative max-w-screen-full mx-auto overflow-hidden">
+      <button class="left-btn btn absolute left-0 top-1/2 transform -translate-y-1/2 text-2xl" onclick="moveLeft()">&#10094;</button>
+      <div class="img-wrapper w-full">
+        <img class="current-img w-full h-auto object-cover" src="project-3/image01.png" alt="" />
+      </div>
+      <button class="right-btn btn absolute right-0 top-1/2 transform -translate-y-1/2 text-2xl" onclick="moveRight()">&#10095;</button>
+    </div>
+  </section>
 
-  <!-- first step: navbar -->
-  <nav>
-    <a class="txt" href="#shop"> Shop</a>
-    <a class="txt" href="#about"> About</a>
-    <a class="shop" href=""> <i class="fa-solid fa-bag-shopping"></i></a>
-    <a class="user" href=""> <i class="fa-regular fa-user"></i></a>
-    <a class="user" href=""><i class="fa-solid fa-cart-shopping"></i></a>
-  </nav>
+  <section>
+    <label for="max-price" >Max Price:</label>
+    <input type="number" name="max-price" id="max-price" class="ml-2">
+    <label for="searchTerm" class="ml-2">Search</label>
+    <input type="text" name="searchTerm" id="searchTerm" class="ml-2">
+    <div class="filter-options mt-2">
+      <span class="filter-icon cursor-pointer" onclick="toggleSortOptions()">
+        <i class="fas fa-filter"></i> Filter
+      </span>
+      <div class="sort-options">
+        <span class="sort-asc bg-grey-200 cursor-pointer" onclick="toggleSort('asc')">
+          <i class="fas fa-sort-amount-up filter-icon"></i> Price Ascending
+        </span>
+        <br>
+        <span class="sort-desc bg-grey-200 cursor-pointer" onclick="toggleSort('desc')">
+          <i class="fas fa-sort-amount-down filter-icon"></i> Price Descending
+        </span>
+      </div>
+    </div>
+    <div class="cards-grid flex flex-wrap justify-center items-center gap-5">
+      <div class="card w-52 shadow-md">
+        <div class="img-wrapper border h-52 w-52 overflow-hidden">
+          <img class="h-full max-w-none" src="t-shirt.webp" alt="">
+        </div>
+        <div class="card-details p-2">
+          <div class="flex justify-between items-center">
+            <h3 class="product-name">T-shirt</h3>
+            <i class="fas fa-heart heart-icon" onclick="toggleHeart(this)"></i> 
+          </div>
+          <div class="price">$39</div>
+        >
 
-  <div class="carousel">
-    <div class="left-btn btn" onclick="moveLeft()"><i class="fa-solid fa-circle-chevron-left"></i></div>
-    <img src="image01.png" alt="">
-    <div class="right-btn btn" onclick="moveRight()"><i class="fa-solid fa-circle-chevron-right"></i></div>
-  </div>
+        </div>
+      </div>
+      <div class="card w-52 shadow-md">
+        <div class="img-wrapper border h-52 w-52 overflow-hidden">
+          <img class="h-full max-w-none" src="shirt.webp" alt="">
+        </div>
+        <div class="card-details p-2">
+          <div class="flex justify-between items-center">
+            <h3 class="product-name">Shirt</h3>
+            <i class="fas fa-heart heart-icon" onclick="toggleHeart(this)"></i>
+          </div>
+          <div class="price">$49</div>
+            </div>
+      <div class="card w-52 shadow-md">
+        <div class="img-wrapper border h-52 w-52 overflow-hidden">
+          <img class="h-full max-w-none" src="camera.jpeg" alt="">
+        </div>
+        <div class="card-details p-2">
+          <div class="flex justify-between items-center">
+            <h3 class="product-name">Camera</h3>
+            <i class="fas fa-heart heart-icon" onclick="toggleHeart(this)"></i>
+           
 
-  <section class="second">
-    <nav>
-      <a href="#store"> STORE</a>
-      <a class="user" href=""> <i class="fa-solid fa-magnifying-glass"></i></a>
-      <a class="user" href=""><i class="fa-solid fa-filter"></i></a>
-    </nav>
-
-    <div class="container">
-      <div class="p1">
-        <img src="product04.jpeg" alt="" style="height: 147px; width: 183.2px">
-        <h6> Product Name <i class="fa-regular fa-heart"onclick="toggleHeart(this)"></i></h6>
-        <p> 9.99$</p>
-      </div>
-      <div class="p1">
-        <img src="products3.png" alt="" style="height: 147px; width: 183.2px">
-        <h6> Product Name <i class="fa-regular fa-heart"onclick="toggleHeart(this)"></i></h6>
-        <p> 9.99$</p>
-      </div>
-      <div class="p1">
-        <img src="product07.jpeg" alt="" style="height: 147px ;width: 183.2px">
-        <h6> Product Name <i class="fa-regular fa-heart"onclick="toggleHeart(this)"></i></h6>
-        <p> 9.99$</p>
-      </div>
-      <div class="p1">
-        <img src="product08.jpeg" alt="" style="height: 147px; width: 183.2px">
-        <h6> Product Name <i class="fa-regular fa-heart"onclick="toggleHeart(this)"></i></h6>
-        <p> 9.99$</p>
-      </div>
-      <div class="p1">
-        <img src="product01.jpeg" alt="" style="height: 147px; width: 183.2px">
-        <h6> Product Name <i class="fa-regular fa-heart"onclick="toggleHeart(this)"></i></h6>
-        <p> 9.99$</p>
-      </div>
-      <div class="p1">
-        <img src="product07.jpeg" alt="" style="height: 147px ;width: 183.2px">
-        <h6> Product Name <i class="fa-regular fa-heart"onclick="toggleHeart(this)"></i></h6>
-        <p> 9.99$</p>
-      </div>
-      <div class="p1">
-        <img src="product05.jpeg" alt="" style="height: 147px ;width: 183.2px">
-        <h6> Product Name <i class="fa-regular fa-heart"onclick="toggleHeart(this)"></i></h6>
-        <p> 9.99$</p>
-      </div>
-      <div class="p1">
-        <img src="product03.jpeg" alt="" style="height: 147px ;width: 183.2px">
-        <h6> Product Name <i class="fa-regular fa-heart"onclick="toggleHeart(this)"></i></h6>
-        <p> 9.99$</p>
-      </div>
+          <div class="price">$99</div>
+        </div>
+            </div>
+      <div class="card w-52 shadow-md">
+        <div class="img-wrapper border h-52 w-52 overflow-hidden">
+          <img class="h-full max-w-none" src="pen.png" alt="">
+        </div>
+        <div class="card-details p-2">
+          <div class="flex justify-between items-center">
+            <h3 class="product-name">Pen</h3>
+            <i class="fas fa-heart heart-icon" onclick="toggleHeart(this)"></i>
+          </div>
+          <div class="price">$19</div>
+        </div>
+            </div>
+               
+      <div class="card w-52 shadow-md">
+        <div class="img-wrapper border h-52 w-52 overflow-hidden">
+          <img class="h-full max-w-none" src="chair.jpeg" alt="">
+        </div>
+        <div class="card-details p-2">
+          <div class="flex justify-between items-center">
+            <h3 class="product-name">Chair</h3>
+            <i class="fas fa-heart heart-icon" onclick="toggleHeart(this)"></i>
+          </div>
+          <div class="price">$79</div>
+        </div>
+            </div>
+               
+      <div class="card w-52 shadow-md">
+        <div class="img-wrapper border h-52 w-52 overflow-hidden">
+          <img class="h-full max-w-none" src="coat.jpeg" alt="">
+        </div>
+        <div class="card-details p-2">
+          <div class="flex justify-between items-center">
+            <h3 class="product-name">Coat</h3>
+            <i class="fas fa-heart heart-icon" onclick="toggleHeart(this)"></i>
+          </div>
+          <div class="price">$89</div>
+        </div>
+            </div>
+      <div class="card w-52 shadow-md">
+        <div class="img-wrapper border h-52 w-52 overflow-hidden">
+          <img class="h-full max-w-none" src="cup.jpeg" alt="">
+        </div>
+        <div class="card-details p-2">
+          <div class="flex justify-between items-center">
+            <h3 class="product-name">Cup</h3>
+            <i class="fas fa-heart heart-icon" onclick="toggleHeart(this)"></i>
+          </div>
+          <div class="price">$20</div>
+        </div>
+            </div>
+      <div class="card w-52 shadow-md">
+        <div class="img-wrapper border h-52 w-52 overflow-hidden">
+          <img class="h-full max-w-none" src="sanitizer.jpeg" alt="">
+        </div>
+        <div class="card-details p-2">
+          <div class="flex justify-between items-center">
+            <h3 class="product-name">Sanitizer</h3>
+            <i class="fas fa-heart heart-icon" onclick="toggleHeart(this)"></i>
+          </div>
+          <div class="price">$15</div>
+        </div>
+            </div>
+      <!-- Add other cards here -->
     </div>
   </section>
   <br><br>
-
-  <section class="third">
+  <section class="third px-4">
     <div class="parg">
      <h1> ABOUT</h1>
       <p>
@@ -216,11 +237,10 @@
     </div>
   </section>
   <br>
-
-  <section class="fourth">
+  <section class="fourth px-4">
     <hr>
     <div class="parg">
-      <h1> ABOUT</h1>
+      <h1> ABOUT </h1>
       <p>
         <h4>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta dolorum repudiandae adipisci sunt! Et maiores nisi
@@ -230,50 +250,193 @@
     </div>
   </section>
 
+
+
   <script>
+      let products = [
+      {
+        name: 'T-shirt',
+        price: 39,
+        img: 't-shirt.webp'
+      },
+      {
+        name: 'Shirt',
+        price: 49,
+        img: 'shirt.webp'
+      },
+      {
+        name: 'Camera',
+        price: 99,
+        img: 'camera.jpeg'
+      },
+      {
+        name: 'Pen',
+        price: 19,
+        img: 'pen.png'
+      },
+      {
+        name: 'Chair',
+        price: 79,
+        img: 'chair.jpeg'
+      },
+      {
+        name: 'Coat',
+        price: 89,
+        img: 'coat.jpeg'
+      },
+      {
+        name: 'Cup',
+        price: 20,
+        img: 'cup.jpeg'
+      },
+      {
+        name: 'Sanitizer',
+        price: 15,
+        img: 'sanitizer.jpeg'
+      }
+    ];
     let imageSources = [
       'image01.png',
       'image02.webp',
       'image03.jpg',
-      'prodct04.jpeg',
     ];
-    let imgIndex = 2;
-    UpdateUI();
+
+    let imgIndex = 0;
+
+    updateUI();
 
     function moveRight() {
-      imgIndex = (imgIndex + 1) % imageSources.length;
-      UpdateUI();
+      imgIndex = imgIndex + 1;
+      if (imgIndex > imageSources.length - 1) {
+        imgIndex = 0;
+      }
+      updateUI();
     }
 
     function moveLeft() {
-      imgIndex = (imgIndex - 1 + imageSources.length) % imageSources.length;
-      UpdateUI();
+      imgIndex = imgIndex - 1;
+      if (imgIndex < 0) {
+        imgIndex = imageSources.length - 1;
+      }
+      updateUI();
     }
 
-    function UpdateUI() {
+    function updateUI() {
       document.querySelector('.carousel img').src = imageSources[imgIndex];
     }
 
-    let leftBtn = document.querySelector('.left-btn');
-    leftBtn.addEventListener('click', moveLeft);
+    let cardsGrid = document.querySelector('.cards-grid');
+    let maxPriceInputElement = document.querySelector('#max-price');
+    let searchTermElement = document.querySelector('#searchTerm');
+    let sortDirection = ''; // Variable to store sort direction
+    let sortOptionsVisible = false; // Variable to store sort options visibility
 
-    let rightBtn = document.querySelector('.right-btn');
-    rightBtn.addEventListener('click', moveRight);
-  
-  function toggleHeart(heartIcon) {
-    heartIcon.classList.toggle('red-heart');
-  }
-</script>
+    function toggleSortOptions() {
+      sortOptionsVisible = !sortOptionsVisible;
+      updateSortOptionsVisibility();
+    }
 
-<style>
-  /* Add this style to your existing <style> block */
-  .fa-regular.fa-heart.red-heart {
-    color: red;
-  }
-  .fa-regular.fa-heart {
-    cursor: pointer;
-  }
+    function updateSortOptionsVisibility() {
+      const sortOptions = document.querySelector('.sort-options');
+      sortOptions.style.display = sortOptionsVisible ? 'block' : 'none';
+    }
 
-</style>
+    function toggleSort(direction) {
+      sortDirection = direction;
+      filterAndSortProducts();
+      toggleSortOptions(); // Hide sort options after selection
+    }
+
+    function populateProductsGrid(productsParam) {
+      cardsGrid.innerHTML = '';
+      productsParam.forEach(function (product) {
+        let cardHTML = createHTMLProductCard(product);
+        cardsGrid.innerHTML += cardHTML;
+      });
+    }
+
+    populateProductsGrid(products);
+
+    function filterProducts(products, maxPrice, searchTerm) {
+      // filter by price
+      let filteredProducts = products.filter(function (product) {
+        if (maxPrice <= 0 || isNaN(maxPrice)) {
+          return true;
+        }
+
+        // product.price
+        if (product.price < maxPrice) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+
+      // filter by search
+      filteredProducts = filteredProducts.filter(function (product) {
+        if (product.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+
+      return filteredProducts;
+    }
+
+    function sortPriceAsc(arrayOfItems) {
+      return arrayOfItems.slice().sort((a, b) => a.price - b.price);
+    }
+
+    function sortPriceDesc(arrayOfItems) {
+      return arrayOfItems.slice().sort((a, b) => b.price - a.price);
+    }
+
+    function filterAndSortProducts() {
+      let filteredProducts = filterProducts(products, maxPriceInputElement.value, searchTermElement.value);
+
+      if (sortDirection === 'asc') {
+        filteredProducts = sortPriceAsc(filteredProducts);
+      } else if (sortDirection === 'desc') {
+        filteredProducts = sortPriceDesc(filteredProducts);
+      }
+
+      populateProductsGrid(filteredProducts);
+    }
+
+    function createHTMLProductCard(product) {
+      let cardHTML = `
+        <div class="card w-52 shadow-md">
+          <div class="img-wrapper border h-52 w-52 overflow-hidden">
+            <img class="h-full max-w-none" src="${product.img}" alt="" />
+          </div>
+          <div class="card-details p-2">
+            <div class="flex justify-between items-center">
+              <h3 class="product-name">${product.name}</h3>
+              <i class="fas fa-heart heart-icon" onclick="toggleHeart(this)"></i>
+            </div>
+            <div class="price">$${product.price}</div>
+          </div>
+        </div>
+      `;
+      return cardHTML;
+    }
+
+    maxPriceInputElement.addEventListener('input', filterAndSortProducts);
+    searchTermElement.addEventListener('input', filterAndSortProducts);
+
+    // Initial population of products grid
+    filterAndSortProducts();
+
+    function toggleHeart(icon) {
+  icon.classList.toggle('clicked');
+  // Toggle heart color directly without using @apply
+  if (icon.classList.contains('clicked')) {
+    icon.style.color = '#ff0000'; // red color
+  } else {
+    icon.style.color = '#333'; // default color
+  }
+}
+  </script>
 </body>
-</html> 
+</html>
